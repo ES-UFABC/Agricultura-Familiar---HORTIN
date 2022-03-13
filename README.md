@@ -1,8 +1,8 @@
-# Grupo 3 - Agricultura Familiar
+# Hortin
 
-1. Leonardo Biazzuto Pironccelli
-1. Henrique Eugenio
-1. Vinícius Nogueira Bispo
-1. Leandro Victor Ferreira
-1. Matheus Moreira Francisco
-1. Roger Sehn
+O app Hortin tem como objetivo a facilitação da venda de produtos produzidos atraves da agricultura familiar.
+
+# Como Baixar
+
+# Como utilizar
+
