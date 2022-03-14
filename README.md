@@ -11,7 +11,7 @@ Ao cliente, haverá a listagem dos produtos disponíveis para a compra e a quant
  BACKEND:
   JAVA (Framework SpringBoot)
  Banco de Dados:
-  MongoDB
+  MySql
 
 # Como Baixar
 
