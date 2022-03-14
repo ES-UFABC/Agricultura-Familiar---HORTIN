@@ -5,6 +5,14 @@ Um ponto forte deste projeto é a facilidade que os produtores têm de cadastrar
 Para o produtor haverá um controle de estoque dele, além de apresentar quanto ele já recebeu até aquele momento, o ajudando com o controle e contabilidade.
 Ao cliente, haverá a listagem dos produtos disponíveis para a compra e a quantidade dos mesmos.
 
+# Ferramentas Utilizadas
+ FRONTEND:
+  JavaScript
+ BACKEND:
+  JAVA (Framework SpringBoot)
+ Banco de Dados:
+  MongoDB
+
 # Como Baixar
 
 # Como utilizar
