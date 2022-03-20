@@ -16,3 +16,6 @@ Ao cliente, haverá a listagem dos produtos disponíveis para a compra e a quant
 # Como Baixar
 
 # Como utilizar
+
+# Acesso ao Banco de dados H2 da aplicação
+Para acessar a base de dados H2 vc deve estar com a API HORTIN rodando em sua máquina. Sendo assim você acessará o link  http://localhost:8080/h2-console, e na JBDC URL coloca o texto “jdbc:h2:mem:HORTIN” e o usuário “sa" e clique em Connect. Após isso verá algumas tabelas em que uma delas é a de PRODUTO, clicando nela você pode fazer selects na linguagem sql.
