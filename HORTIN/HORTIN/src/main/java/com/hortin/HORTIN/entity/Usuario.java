@@ -4,21 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-public class Usuario {
+@MappedSuperclass
+public abstract class Usuario {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String UserName;
 	private String Email;
-	private char TipoUsuario;
 	private String Celular;
 
 	/*endereco*/
-	private String EndereçoRua;
+	private String EnderecoRua;
 	private String EnderecoNumero;
 	private String EnderecoComplemento;
+
+	private String EnderecoBairro;
+	private String EnderecoCidade;
+	private String EnderecoEstado;
+	private String EnderecoPais;
+	private String CEP;
 
 	public String getEnderecoNumero() {
 		return EnderecoNumero;
@@ -33,12 +37,6 @@ public class Usuario {
 		EnderecoComplemento = enderecoComplemento;
 	}
 
-	private String EndereçoBairro;
-	private String EndereçoCidade;
-	private String EndereçoEstado;
-	private String EndereçoPais;
-	private String CEP;
-
 	public String getUserName() {
 		return UserName;
 	}
@@ -51,47 +49,41 @@ public class Usuario {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	public char getTipoUsuario() {
-		return TipoUsuario;
-	}
-	public void setTipoUsuario(char tipoUsuario) {
-		TipoUsuario = tipoUsuario;
-	}
 	public String getCelular() {
 		return Celular;
 	}
 	public void setCelular(String celular) {
 		Celular = celular;
 	}
-	public String getEndereçoRua() {
-		return EndereçoRua;
+	public String getEnderecoRua() {
+		return EnderecoRua;
 	}
-	public void setEndereçoRua(String endereçoRua) {
-		EndereçoRua = endereçoRua;
+	public void setEnderecoRua(String endereçoRua) {
+		EnderecoRua = endereçoRua;
 	}
-	public String getEndereçoBairro() {
-		return EndereçoBairro;
+	public String getEnderecoBairro() {
+		return EnderecoBairro;
 	}
-	public void setEndereçoBairro(String endereçoBairro) {
-		EndereçoBairro = endereçoBairro;
+	public void setEnderecoBairro(String enderecoBairro) {
+		EnderecoBairro = enderecoBairro;
 	}
-	public String getEndereçoCidade() {
-		return EndereçoCidade;
+	public String getEnderecoCidade() {
+		return EnderecoCidade;
 	}
-	public void setEndereçoCidade(String endereçoCidade) {
-		EndereçoCidade = endereçoCidade;
+	public void setEnderecoCidade(String enderecoCidade) {
+		EnderecoCidade = enderecoCidade;
 	}
-	public String getEndereçoEstado() {
-		return EndereçoEstado;
+	public String getEnderecoEstado() {
+		return EnderecoEstado;
 	}
-	public void setEndereçoEstado(String endereçoEstado) {
-		EndereçoEstado = endereçoEstado;
+	public void setEnderecoEstado(String enderecoEstado) {
+		EnderecoEstado = enderecoEstado;
 	}
-	public String getEndereçoPais() {
-		return EndereçoPais;
+	public String getEnderecoPais() {
+		return EnderecoPais;
 	}
-	public void setEndereçoPais(String endereçoPais) {
-		EndereçoPais = endereçoPais;
+	public void setEnderecoPais(String enderecoPais) {
+		EnderecoPais = enderecoPais;
 	}
 	public String getCEP() {
 		return CEP;
@@ -99,18 +91,4 @@ public class Usuario {
 	public void setCEP(String cEP) {
 		CEP = cEP;
 	}
-	public Long getId() {
-		return id;
-	}
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", UserName=" + UserName + ", Email=" + Email + ", TipoUsuario=" + TipoUsuario
-				+ ", Celular=" + Celular + ", EndereçoRua=" + EndereçoRua + ", EnderecoNumero=" + EnderecoNumero
-				+ ", EnderecoComplemento=" + EnderecoComplemento + ", EndereçoBairro=" + EndereçoBairro
-				+ ", EndereçoCidade=" + EndereçoCidade + ", EndereçoEstado=" + EndereçoEstado + ", EndereçoPais="
-				+ EndereçoPais + ", CEP=" + CEP + "]";
-	}
-
-
-
 }

@@ -1,9 +1,15 @@
 package com.hortin.HORTIN.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto {
@@ -13,7 +19,25 @@ public class Produto {
 	private String NomeProduto;
 	private Double ValorProduto;
 	private String DescricaoProduto;
+	@ManyToOne
+	@NotNull
+	@JsonIgnore
+	private Vendedor vendedor;
 
+	
+	
+	public Produto() {
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+	public Long getId_produto() {
+		return id;
+	}
 	public String getNomeProduto() {
 		return NomeProduto;
 	}
@@ -31,9 +55,6 @@ public class Produto {
 	}
 	public void setDescricaoProduto(String descricaoProduto) {
 		DescricaoProduto = descricaoProduto;
-	}
-	public Long getId() {
-		return id;
 	}
 	@Override
 	public String toString() {
