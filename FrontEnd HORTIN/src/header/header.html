@@ -57,11 +57,37 @@
 			<div class="col align-self-end">
 				<button class="btn btn-danger" style="color: white" onclick="algumafuncaoae()">Deletar</button>
 				<button class="btn btn-info" style="color: white" onclick="algumafuncaoae()">Editar</button>
-				<button class="btn btn-primary" style="color: white" onclick="algumafuncaoae()">Novo Produto</button>
+				<button class="btn btn-primary" style="color: white"data-bs-toggle="modal" data-bs-target="#exampleModal">Novo Produto</button>
 			</div>
 		</div>
   	<!-- </div> -->
-
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cadastro Produto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/action_page.php">
+                <label for="pNome">Nome produto:</label>
+                <input type="text" id="pNome" name="pNome"><br><br>
+                <label for="pDdesc">Descrição:</label>
+                <input type="text" id="pDdesc" name="pDesc"><br><br>
+                <label for="pValor">Valor:</label>
+                <input type="text" id="pValor" name="pValor"><br><br>
+                <label for="pQuantidade">Quantidade:</label>
+                <input type="number" id="pQuantidade" name="pQuantidade"><br><br>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 	<table id="tabelaVendedor" class="table table-striped" style="width:100%">
         <thead>
             <tr>
@@ -662,6 +688,7 @@
             </tr>
         </tfoot>
     </table>
+    
 </body>
 </html>
 
