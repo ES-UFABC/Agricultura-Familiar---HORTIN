@@ -57,33 +57,33 @@
 			<div class="col align-self-end">
 				<button class="btn btn-danger" style="color: white" onclick="algumafuncaoae()">Deletar</button>
 				<button class="btn btn-info" style="color: white" onclick="algumafuncaoae()">Editar</button>
-				<button class="btn btn-primary" style="color: white"data-bs-toggle="modal" data-bs-target="#exampleModal">Novo Produto</button>
+				<button class="btn btn-primary" style="color: white"data-bs-toggle="modal" data-bs-target="#modalNovoProduto">Novo Produto</button>
 			</div>
 		</div>
   	<!-- </div> -->
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalNovoProduto" tabindex="-1" aria-labelledby="modalNovoProdutoLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Cadastro Produto</h5>
+          <h5 class="modal-title" id="modalNovoProdutoLabel">Cadastro de novo produto</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="/action_page.php">
-                <label for="pNome">Nome produto:</label>
-                <input type="text" id="pNome" name="pNome"><br><br>
+            <form id="cadastroProduto">
+                <label for="pNome">Nome do produto:</label>
+                <input type="text" class="form-control" id="pNome" name="Nome"><br><br>
                 <label for="pDdesc">Descrição:</label>
-                <input type="text" id="pDdesc" name="pDesc"><br><br>
+                <input type="text" class="form-control" id="pDdesc" name="Desc"><br><br>
                 <label for="pValor">Valor:</label>
-                <input type="text" id="pValor" name="pValor"><br><br>
+                <input type="text" class="form-control" id="pValor" name="Valor"><br><br>
                 <label for="pQuantidade">Quantidade:</label>
-                <input type="number" id="pQuantidade" name="pQuantidade"><br><br>
-              </form>
+                <input type="number" class="form-control" id="pQuantidade" name="Quantidade"><br><br>
+            </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fechar</button>
+          <button onclick="novoProduto" type="button" class="btn btn-outline-primary">Salvar</button>
         </div>
       </div>
     </div>

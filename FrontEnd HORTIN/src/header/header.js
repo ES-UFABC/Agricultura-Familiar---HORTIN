@@ -82,3 +82,24 @@ $(document).ready(function() {
         } );
     } );
 });
+
+function novoProduto(){
+    var form = new FormData($('#cadastroProduto').get(0));
+    alert('clicou.');
+    $.ajax({
+        method: "POST",
+        url : "api/novoProduto",
+        contentType: false,
+        processData : false,
+        data  :  form,
+        success : function (res){
+            console.log(res);
+            flash('Novo produto criado com sucesso.', 'info');
+            $('#modalNovoProduto').modal('hide');
+        },
+        error : function(res){
+            console.log(res);
+            alert('Algo de errado aconteceu, tente novamente mais tarde.');
+        }
+    })
+}
