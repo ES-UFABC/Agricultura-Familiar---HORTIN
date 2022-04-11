@@ -84,21 +84,26 @@ $(document).ready(function() {
 });
 
 function novoProduto(){
-    var form = new FormData($('#cadastroProduto').get(0));
-    alert('clicou.');
+    var vendedor = '1&'
+    var form = vendedor + $('form').serialize();
+    alert(form);
     $.ajax({
         method: "POST",
-        url : "api/novoProduto",
+        crossDomain: true,
+        url : 'http://localhost:8080/produto/vendedor/' + form,
         contentType: false,
         processData : false,
+        dataType: 'string',
         data  :  form,
-        success : function (res){
+        success : function (res, data){
             console.log(res);
+            console.log(data);
             flash('Novo produto criado com sucesso.', 'info');
             $('#modalNovoProduto').modal('hide');
         },
-        error : function(res){
+        error : function(res, data){
             console.log(res);
+            console.log(data);
             alert('Algo de errado aconteceu, tente novamente mais tarde.');
         }
     })
