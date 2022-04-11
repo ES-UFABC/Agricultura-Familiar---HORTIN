@@ -1,0 +1,1 @@
+INSERT INTO Vendedor(ID,User,SENHA,NOME) VALUES(1,'admin','admin','admin')

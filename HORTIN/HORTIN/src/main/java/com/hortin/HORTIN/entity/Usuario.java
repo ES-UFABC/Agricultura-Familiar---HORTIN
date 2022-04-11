@@ -1,15 +1,21 @@
 package com.hortin.HORTIN.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
-public abstract class Usuario {
-
-	private String UserName;
+public class Usuario {
+	@NotNull
+	private String User;
+	@Column(nullable = false)
+	private String Nome;
+	@Column(nullable = false)
+	private String Senha;
 	private String Email;
 	private String Celular;
 
@@ -23,6 +29,22 @@ public abstract class Usuario {
 	private String EnderecoEstado;
 	private String EnderecoPais;
 	private String CEP;
+	
+	public Usuario() {
+		super();
+	}
+	public String getNome() {
+		return Nome;
+	}
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+	public String getSenha() {
+		return Senha;
+	}
+	public void setSenha(String senha) {
+		Senha = senha;
+	}
 
 	public String getEnderecoNumero() {
 		return EnderecoNumero;
@@ -37,11 +59,11 @@ public abstract class Usuario {
 		EnderecoComplemento = enderecoComplemento;
 	}
 
-	public String getUserName() {
-		return UserName;
+	public String getUser() {
+		return User;
 	}
-	public void setUserName(String userName) {
-		UserName = userName;
+	public void setUser(String userName) {
+		User = userName;
 	}
 	public String getEmail() {
 		return Email;
