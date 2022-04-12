@@ -19,16 +19,23 @@ public class Produto {
 	private String NomeProduto;
 	private Double ValorProduto;
 	private String DescricaoProduto;
+	private Integer Quantidade;
 	@ManyToOne
 	@NotNull
 	@JsonIgnore
 	private Vendedor vendedor;
 
-	
-	
 	public Produto() {
 	}
 
+	public Integer getQuantidade() {
+		return Quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		Quantidade = quantidade;
+	}
+	
 	public Vendedor getVendedor() {
 		return vendedor;
 	}

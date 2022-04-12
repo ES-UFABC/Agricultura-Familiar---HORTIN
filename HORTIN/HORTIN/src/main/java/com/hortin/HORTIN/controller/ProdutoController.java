@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -33,9 +35,16 @@ public class ProdutoController {
 	private vendedorRepository vendedorRepo;
 	
 	@PostMapping("/vendedor/{vendedor_id}")
-	public ResponseEntity<Produto> insereProduto(@RequestBody Produto produtoRequest,@PathVariable long vendedor_id, UriComponentsBuilder uriBuilder){
+	public ResponseEntity<Produto> insereProduto(@RequestParam String Nome ,@RequestParam String Desc ,@RequestParam Double Valor ,@RequestParam Integer Quantidade ,@PathVariable long vendedor_id, UriComponentsBuilder uriBuilder){
+		System.out.println("a");
 		Optional<Vendedor> vendedor = vendedorRepo.findById(vendedor_id);
-		System.out.println(vendedor);
+		System.out.println("a");
+		Produto produtoRequest = new Produto();
+		produtoRequest.setNomeProduto(Nome);
+		produtoRequest.setDescricaoProduto(Desc);
+		produtoRequest.setValorProduto(Valor);
+		produtoRequest.setQuantidade(Quantidade);
+		
 		if(vendedor.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -44,8 +53,8 @@ public class ProdutoController {
 		System.out.println(produtoRequest.toString());
 		
 		URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produtoRequest.getId_produto()).toUri();
-		
-		return ResponseEntity.created(uri).body(produtoRequest);
+		System.out.println("passou uri");
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
 	@DeleteMapping("/{id}")
