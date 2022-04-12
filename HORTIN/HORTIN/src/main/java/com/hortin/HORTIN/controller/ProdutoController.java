@@ -44,7 +44,7 @@ public class ProdutoController {
 		produtoRequest.setDescricaoProduto(Desc);
 		produtoRequest.setValorProduto(Valor);
 		produtoRequest.setQuantidade(Quantidade);
-		
+		AjaxResponseBody result = new AjaxResponseBody();
 		if(vendedor.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -54,7 +54,7 @@ public class ProdutoController {
 		
 		URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produtoRequest.getId_produto()).toUri();
 		System.out.println("passou uri");
-		return ResponseEntity.status(HttpStatus.OK).build();
+		return ResponseEntity.status(HttpStatus.OK).build("success");
 	}
 	
 	@DeleteMapping("/{id}")
