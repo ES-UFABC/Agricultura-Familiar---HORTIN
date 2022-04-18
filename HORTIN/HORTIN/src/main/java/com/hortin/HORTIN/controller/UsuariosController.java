@@ -38,11 +38,11 @@ public class UsuariosController {
 
 	@GetMapping("/login")
 	public ResponseEntity<Vendedor> verificaLogin(@RequestParam String user,@RequestParam String senha){
-		System.out.println(user + senha);
 		if(vendedorRepo.verificaLogin(senha, user).isEmpty()) {
+			System.out.println("Não Autorizado");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
-		
+		System.out.println("Autorizado");
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }
