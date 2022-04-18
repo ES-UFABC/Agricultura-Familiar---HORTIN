@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.hortin.HORTIN.entity.Produto;
@@ -38,14 +37,12 @@ public class UsuariosController {
 	
 
 	@GetMapping("/login")
-	@ResponseBody
-	public String verificaLogin(@RequestParam String user,@RequestParam String senha){
+	public ResponseEntity<Vendedor> verificaLogin(@RequestParam String user,@RequestParam String senha){
 		System.out.println(user + senha);
 		if(vendedorRepo.verificaLogin(senha, user).isEmpty()) {
-			System.out.println("taaqui");
-			return "{\"status\": \"fail\"}";
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
 		
-		return "{\"status\": \"success\"}";
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }
