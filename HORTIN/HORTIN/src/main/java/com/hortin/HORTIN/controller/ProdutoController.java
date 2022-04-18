@@ -35,26 +35,17 @@ public class ProdutoController {
 	private vendedorRepository vendedorRepo;
 	
 	@PostMapping("/vendedor/{vendedor_id}")
-	public ResponseEntity<Produto> insereProduto(@RequestParam String Nome ,@RequestParam String Desc ,@RequestParam Double Valor ,@RequestParam Integer Quantidade ,@PathVariable long vendedor_id, UriComponentsBuilder uriBuilder){
-		System.out.println("a");
+	public String insereProduto(@RequestBody Produto produto,@PathVariable long vendedor_id, UriComponentsBuilder uriBuilder){
+		System.out.println(produto);
 		Optional<Vendedor> vendedor = vendedorRepo.findById(vendedor_id);
-		System.out.println("a");
-		Produto produtoRequest = new Produto();
-		produtoRequest.setNomeProduto(Nome);
-		produtoRequest.setDescricaoProduto(Desc);
-		produtoRequest.setValorProduto(Valor);
-		produtoRequest.setQuantidade(Quantidade);
-		AjaxResponseBody result = new AjaxResponseBody();
 		if(vendedor.isEmpty()) {
-			return ResponseEntity.notFound().build();
+			return "{\"status\": \"error\"}";
 		}
-		produtoRequest.setVendedor(vendedor.get());
-		repo.save(produtoRequest);
-		System.out.println(produtoRequest.toString());
+		produto.setVendedor(vendedor.get());
+		repo.save(produto);
 		
-		URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produtoRequest.getId_produto()).toUri();
-		System.out.println("passou uri");
-		return ResponseEntity.status(HttpStatus.OK).build("success");
+		URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produto.getId_produto()).toUri();
+		return "{\"status\": \"success\"}";
 	}
 	
 	@DeleteMapping("/{id}")

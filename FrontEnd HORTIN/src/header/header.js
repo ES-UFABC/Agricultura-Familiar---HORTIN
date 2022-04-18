@@ -68,7 +68,8 @@ $(document).ready(function() {
                 }
              },
     });
-                
+    sessionStorage.setItem('id_usuario', '1')
+    sessionStorage.setItem('tipo_usuario', '1')
     // Apply the search
     table.columns().every( function () {
         var that = this;
@@ -84,22 +85,26 @@ $(document).ready(function() {
 });
 
 function novoProduto(){
-    var vendedor = '1?'
-    var form = vendedor + $('form').serialize();
+    var vendedor = localStorage.getItem("id_usuario")
+    var data = new FormData($("#cadastroProduto").get(0));
+    var value = JSON.stringify(Object.fromEntries(data.entries()));
+    var url= 'http://localhost:8080/produto/vendedor/' + vendedor.toString()
+    console.log(value)
     $.ajax({
         method: "POST",
         crossDomain: true,
-        url : 'http://localhost:8080/produto/vendedor/' + form,
-        contentType: false,
+        url : url,
+        dataType : "json",
+        contentType: "application/json; charset=utf-8",
         processData : false,
-        data  :  form,
+        data  :  value,
         success : function (res){
             $("#modalNovoProduto").modal('hide')
-            alert('Produto Criado Com Sucesso');
+            flash('Ação executada com sucesso 😀', 'success');
         },
         error : function(res){
             console.log(res);
-            alert('Algo de errado aconteceu, tente novamente mais tarde.');
+            flash('Algo de errado aconteceu 😥', 'error');
         }
     })
 }

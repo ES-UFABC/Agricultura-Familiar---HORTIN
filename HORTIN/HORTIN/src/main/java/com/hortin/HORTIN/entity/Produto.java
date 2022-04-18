@@ -19,7 +19,7 @@ public class Produto {
 	private String NomeProduto;
 	private Double ValorProduto;
 	private String DescricaoProduto;
-	private Integer Quantidade;
+	private Integer QuantidadeProduto;
 	@ManyToOne
 	@NotNull
 	@JsonIgnore
@@ -28,12 +28,12 @@ public class Produto {
 	public Produto() {
 	}
 
-	public Integer getQuantidade() {
-		return Quantidade;
+	public Integer getQuantidadeProduto() {
+		return QuantidadeProduto;
 	}
 
-	public void setQuantidade(Integer quantidade) {
-		Quantidade = quantidade;
+	public void setQuantidadeProduto(Integer quantidade) {
+		QuantidadeProduto = quantidade;
 	}
 	
 	public Vendedor getVendedor() {
