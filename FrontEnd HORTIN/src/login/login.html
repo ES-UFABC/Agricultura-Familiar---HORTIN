@@ -32,5 +32,66 @@
             <button onclick="login();" type="button" class="btn btn-outline-primary">Login</button>
         </form>
     </div>
+    <!-- <div class="container"> -->
+		<div class="row">
+			<div class="col align-self-start">
+			</div>
+			<div class="col align-self-center">
+			</div>
+			<div class="col align-self-end" style="margin-bottom: 10px" id="botoesVendedor">
+				<button class="btn btn-primary" style="color: white"data-bs-toggle="modal" data-bs-target="#modalNovoUsuario">Sou novo aqui!</button>
+			</div>
+		</div>
+  	<!-- </div> -->
+  <!-- Modal -->
+  <div class="modal fade" id="modalNovoUsuario" tabindex="-1" aria-labelledby="modalNovoUsuarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalNovoUsuarioLabel">Cadastro de novo usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="cadastroUsuario">
+                    <label for="Nome">Nome completo:</label>
+                    <input type="text" class="form-control" id="Nome" name="nomeUsuario"><br><br>
+                    <label for="CPF">CPF:</label>
+                    <input type="text" class="form-control" id="CPF" name="CPFUsuario"><br><br>
+                    <label for="Usuario">Usuario:</label>
+                    <input type="text" class="form-control" id="Usuario" name="UsuarioLogin"><br><br>
+                    <label for="Senha">Senha:</label>
+                    <input type="text" class="form-control" id="Senha" name="UsuarioSenha"><br><br>
+                    <label for="TipoAcesso">Tipo de acesso:</label>
+                    <select class="form-control" id="TipoAcesso" name="UsuarioTipo">
+                        <option value = "Vendedor">Vendedor</option>
+                        <option value = "Consumidor">Consumidor</option>
+                    </select><br><br>
+                    <label for="Celular">Celular:</label>
+                    <input type="text" class="form-control" id="Celular" name="UsuarioCelular"><br><br>
+                    <label for="Email">Email:</label>
+                    <input type="text" class="form-control" id="Email" name="UsuarioEmail"><br><br>
+                    <label for="eRua">Rua:</label>
+                    <input type="text" class="form-control" id="eRua" name="UsuarioRua"><br><br>
+                    <label for="eNum">Numero:</label>
+                    <input type="text" class="form-control" id="eNum" name="UsuarioNumeroEndereco"><br><br>
+                    <label for="eBairro">Bairro:</label>
+                    <input type="text" class="form-control" id="eBairro" name="UsuarioBairro"><br><br>
+                    <label for="eCidade">Cidade:</label>
+                    <input type="text" class="form-control" id="eCidade" name="UsuarioCidade"><br><br>
+                    <label for="eEstado">Estado:</label>
+                    <input type="text" class="form-control" id="eEstado" name="UsuarioEstado"><br><br>
+                    <label for="eCEP">Cep:</label>
+                    <input type="text" class="form-control" id="eCEP" name="UsuarioCEP"><br><br>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fechar</button>
+          <button onclick="novoUsuario();" type="button" class="btn btn-outline-primary">Salvar</button>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
