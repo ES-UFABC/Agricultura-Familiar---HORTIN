@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.hortin.HORTIN.entity.CompraProduto;
 import com.hortin.HORTIN.entity.Produto;
 import com.hortin.HORTIN.entity.Vendedor;
 import com.hortin.HORTIN.repository.produtoRepository;
@@ -96,5 +98,25 @@ public class ProdutoController {
 		
 		return ResponseEntity.ok(listaProduto);
 		
+	}
+	
+	@PutMapping("/Compra")
+	@Transactional
+	public ResponseEntity<List<CompraProduto>> compraProdutos(@RequestBody List<CompraProduto> listaCompra){
+		for(CompraProduto compra : listaCompra) {
+			Optional<Produto> produtoAchado = repo.findById(compra.getId());
+			if(produtoAchado.isEmpty()) {
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return ResponseEntity.notFound().build();
+			}
+			if(produtoAchado.get().getQuantidadeProduto() - compra.getQuantidade() >= 0) {
+				produtoAchado.get().setQuantidadeProduto(produtoAchado.get().getQuantidadeProduto() - compra.getQuantidade());
+			}
+			else {
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return ResponseEntity.badRequest().body(null);
+			}
+		}
+		return ResponseEntity.ok(listaCompra);
 	}
 }

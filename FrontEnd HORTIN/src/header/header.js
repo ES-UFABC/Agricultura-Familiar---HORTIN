@@ -55,6 +55,8 @@ $(document).ready(function() {
 
 function novoProduto(){
     var vendedor = localStorage.getItem("id_usuario")
+    sessionStorage.setItem('id_usuario', '1')
+    sessionStorage.setItem('tipo_usuario', '1')
     var data = new FormData($("#cadastroProduto").get(0));
     var value = JSON.stringify(Object.fromEntries(data.entries()));
     var url= 'http://localhost:8080/produto/vendedor/' + vendedor.toString()
