@@ -7,8 +7,10 @@ function login(){
     $.ajax({
         method: "GET",
         url : url,
-        success : function (){
-            alert('Ação executada com sucesso 😀');
+        success : function (data, textStatus, jqXHR){
+            sessionStorage.setItem('id_usuario', jqXHR.responseJSON.id)
+            sessionStorage.setItem('tipo_usuario', jqXHR.responseJSON.tipoAcesso)
+            window.location.replace("../header/header.html");
         },
         error : function(){
             alert('Algo de errado aconteceu 😥');
@@ -31,12 +33,10 @@ function novoUsuario(){
         processData : false,
         data  :  value,
         success : function (res){
-            $("#modalNovoProduto").modal('hide')
-            flash('Ação executada com sucesso 😀', 'success');
+            alert('Cadastrado com sucesso\r\n Bem vindo ao HORTIN 😊');
         },
         error : function(res){
-            console.log(res);
-            flash('Algo de errado aconteceu 😥', 'error');
+            alert('Usuario já cadastrado 😥');
         }
     })
 }

@@ -1,4 +1,4 @@
-INSERT INTO Vendedor(ID,User,SENHA,NOME) VALUES(1,'admin','admin','admin')
+INSERT INTO Usuario(ID,User,SENHA,NOME) VALUES(1,'admin','admin','admin')
 
 INSERT INTO Produto(id,Nome_Produto, Valor_Produto, Descricao_Produto, Quantidade_Produto,Vendedor_Id) VALUES(1,'BANANA', 2, 'BANANINHA', 5,1)
 INSERT INTO Produto(id,Nome_Produto, Valor_Produto, Descricao_Produto, Quantidade_Produto,Vendedor_Id) VALUES(2,'MAÇA', 2, 'MACAZINHA', 5,1)

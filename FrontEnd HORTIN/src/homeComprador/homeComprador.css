@@ -10,5 +10,8 @@
 }
 #botaoCarrinho{
     float: right;
+}
 
+#botaoCarrinho:hover{
+    background-color: #00FFFF;
 }

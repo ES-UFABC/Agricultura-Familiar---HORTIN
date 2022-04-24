@@ -7,6 +7,11 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -23,9 +28,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.hortin.HORTIN.entity.CompraProduto;
 import com.hortin.HORTIN.entity.Produto;
+import com.hortin.HORTIN.entity.Usuario;
 import com.hortin.HORTIN.entity.Vendedor;
 import com.hortin.HORTIN.repository.produtoRepository;
-import com.hortin.HORTIN.repository.vendedorRepository;
+import com.hortin.HORTIN.repository.usuarioRepository;
 
 @RestController
 @RequestMapping("/produto")
@@ -34,16 +40,28 @@ public class ProdutoController {
 	@Autowired
 	private produtoRepository repo;
 	@Autowired
-	private vendedorRepository vendedorRepo;
+	private usuarioRepository usuarioRepo;
 	
-	@PostMapping("/vendedor/{vendedor_id}")
-	public String insereProduto(@RequestBody Produto produto,@PathVariable long vendedor_id, UriComponentsBuilder uriBuilder){
+	
+	@GetMapping()
+	public ResponseEntity<List<Produto>> pegaTodosProdutos(
+			  @RequestParam(defaultValue = "0") int pageNum,
+		      @RequestParam(defaultValue = "10") int size,
+		      @RequestParam(defaultValue = "id") String sort){
+		Pageable page = PageRequest.of(pageNum, size, Sort.by(sort));
+		Page<Produto> listaProdutos = repo.findAll(page);
+		
+		return ResponseEntity.ok(listaProdutos.getContent());
+	}
+	
+	@PostMapping("/vendedor/{usuario_id}")
+	public String insereProduto(@RequestBody Produto produto,@PathVariable long usuario_id, UriComponentsBuilder uriBuilder){
 		System.out.println(produto);
-		Optional<Vendedor> vendedor = vendedorRepo.findById(vendedor_id);
-		if(vendedor.isEmpty()) {
+		Optional<Usuario> usuario = usuarioRepo.findById(usuario_id);
+		if(usuario.isEmpty()) {
 			return "{\"status\": \"error\"}";
 		}
-		produto.setVendedor(vendedor.get());
+		produto.setVendedor(usuario.get());
 		repo.save(produto);
 		
 		URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produto.getId_produto()).toUri();
@@ -79,6 +97,7 @@ public class ProdutoController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> pegaProdutoPorId(@PathVariable Long id){
+		System.out.println("pegaProdutoPorIDVendedor");
 		Optional<Produto> produtoAchado = repo.findById(id);
 		
 		if(produtoAchado.isEmpty()) {

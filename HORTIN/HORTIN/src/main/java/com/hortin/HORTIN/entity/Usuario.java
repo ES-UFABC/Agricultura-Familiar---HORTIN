@@ -8,8 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
-@MappedSuperclass
+@Entity
 public class Usuario {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	@NotNull
 	private String User;
 	@Column(nullable = false)
@@ -18,6 +20,8 @@ public class Usuario {
 	private String Senha;
 	private String Email;
 	private String Celular;
+	private Character tipoAcesso;
+	private String CPF;
 
 	/*endereco*/
 	private String EnderecoRua;
@@ -29,6 +33,26 @@ public class Usuario {
 	private String EnderecoEstado;
 	private String EnderecoPais;
 	private String CEP;
+
+	
+	public String getCPF() {
+		return CPF;
+	}
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Character getTipoAcesso() {
+		return tipoAcesso;
+	}
+	public void setTipoAcesso(Character tipoAcesso) {
+		this.tipoAcesso = tipoAcesso;
+	}
 	
 	public Usuario() {
 		super();

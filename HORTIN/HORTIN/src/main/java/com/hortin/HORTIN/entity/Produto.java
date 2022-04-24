@@ -23,7 +23,7 @@ public class Produto {
 	@ManyToOne
 	@NotNull
 	@JsonIgnore
-	private Vendedor vendedor;
+	private Usuario vendedor;
 
 	public Produto() {
 	}
@@ -36,10 +36,10 @@ public class Produto {
 		QuantidadeProduto = quantidade;
 	}
 	
-	public Vendedor getVendedor() {
+	public Usuario getVendedor() {
 		return vendedor;
 	}
-	public void setVendedor(Vendedor vendedor) {
+	public void setVendedor(Usuario vendedor) {
 		this.vendedor = vendedor;
 	}
 	public Long getId_produto() {
