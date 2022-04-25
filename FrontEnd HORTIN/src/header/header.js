@@ -103,6 +103,7 @@ function novoProduto(){
     $('#pDesc').val('');
     $('#pValor').val('');
     $('#pQuantidade').val('');
+    document.location.reload(true)
 }
 
 
