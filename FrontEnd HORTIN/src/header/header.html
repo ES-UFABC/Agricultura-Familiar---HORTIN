@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="./header.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css">
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 	<script src="./header.js"></script>
 	<script>
@@ -55,8 +56,8 @@
 			<div class="col align-self-center">
 			</div>
 			<div class="col align-self-end" style="margin-bottom: 10px" id="botoesVendedor">
-				<button class="btn btn-danger" style="color: white" onclick="algumafuncaoae()">Deletar</button>
-				<button class="btn btn-info" style="color: white" onclick="algumafuncaoae()">Editar</button>
+				<button class="btn btn-danger" style="color: white" onclick="deletarProduto();">Deletar</button>
+				<button class="btn btn-info" style="color: white" onclick="editarProduto();">Editar</button>
 				<button class="btn btn-primary" style="color: white"data-bs-toggle="modal" data-bs-target="#modalNovoProduto">Novo Produto</button>
 			</div>
 		</div>
@@ -72,13 +73,13 @@
         <div class="modal-body">
             <form id="cadastroProduto">
                     <label for="pNome">Nome do produto:</label>
-                    <input type="text" class="form-control" id="pNome" name="nomeProduto"><br><br>
-                    <label for="pDdesc">Descrição:</label>
-                    <input type="text" class="form-control" id="pDdesc" name="descricaoProduto"><br><br>
+                    <input type="text" class="form-control" id="pNome" name="nomeProduto" autocomplete="off"><br><br>
+                    <label for="pDesc">Descrição:</label>
+                    <input type="text" class="form-control" id="pDesc" name="descricaoProduto" autocomplete="off"><br><br>
                     <label for="pValor">Valor:</label>
-                    <input type="text" class="form-control" id="pValor" name="valorProduto"><br><br>
+                    <input type="text" class="form-control" id="pValor" name="valorProduto" autocomplete="off"><br><br>
                     <label for="pQuantidade">Quantidade:</label>
-                    <input type="number" class="form-control" id="pQuantidade" name="quantidadeProduto"><br><br>
+                    <input type="number" class="form-control" id="pQuantidade" name="quantidadeProduto" ><br><br>
             </form>
         </div>
         <div class="modal-footer">
@@ -89,30 +90,49 @@
       </div>
     </div>
   </div>
-	<table id="tabelaVendedor" class="table table-striped" style="width:100%">
+	<table id="tabelaVendedor" class="display table table-striped" style="width:97%">
         <thead>
             <tr>
                 <th>Nome do Produto</th>
                 <th>Descrição</th>
                 <th>Valor unitário (R$)</th>
                 <th>Quantidade</th>
+				<th style='display:none;'>id</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Banana</td>
-                <td>Bananas amarelas deliciosas</td>
-                <td>70.00</td>
-                <td>25</td>
-            </tr>
-        </tbody>
     </table>
     
+	<div class="modal fade" id="modalEditarProduto" tabindex="-1" aria-labelledby="modalNovoProdutoLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="modalEditarProdutoLabel">Editando produto</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="editarProduto">
+						<label for="eNome">Nome do produto:</label>
+						<input type="text" class="form-control" id="eNome" name="nomeProduto" autocomplete="off"><br><br>
+						<label for="eDesc">Descrição:</label>
+						<input type="text" class="form-control" id="eDesc" name="descricaoProduto" autocomplete="off"><br><br>
+						<label for="eValor">Valor:</label>
+						<input type="text" class="form-control" id="eValor" name="valorProduto" autocomplete="off"><br><br>
+						<label for="eQuantidade">Quantidade:</label>
+						<input type="number" class="form-control" id="eQuantidade" name="quantidadeProduto" autocomplete="off"><br><br>
+				</form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fechar</button>
+			  <button onclick="salvarEdicao();" type="button" class="btn btn-outline-primary">Salvar</button>
+			</div>
+			<br><br>
+		  </div>
+		</div>
+	  </div>
+
+
 </body>
 </html>
-
-
-
 
 
 
