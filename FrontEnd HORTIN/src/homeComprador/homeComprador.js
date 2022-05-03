@@ -1,67 +1,75 @@
 $(document).ready(function() {
 
-    // $('#tabelaVendedor tfoot th').each( function () {
-    //     var title = $(this).text();
-    //     $(this).html( '<input type="text" size="10" placeholder="'+title+'" /input>' );
-    // } );
+    buildTableComprador();
+
+    $('#tabelaComprador').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+ 
+    $('#button').click( function () {
+        table.row('.selected').remove().draw( false );
+    } );
+
+   
+});
+
+function buildTableComprador(){
 
     window.tableComprador = $("#tabelaComprador").DataTable({
         paging: true,
-        dom: 'Bfrtip',
+        pagingType : "full",
         colReorder: true,
-            buttons: [
-                {
-                    extend: 'colvis',
-                    text: 'Colunas Visíveis'
-                },
-                'copy', 'excel', 'print',
-                {
-                    text: 'Atualiza',
-                    action: function () {
-                         window.location.reload();
-                    }
-                }
-                ],
-        order: [[0, "asc"]],
-        stateSave: false,
-        responsive: false,
-        scrollY: "400px",
-        scrollX: "0px",
-        scrollCollapse: true,
-        
-    });
-    sessionStorage.setItem('id_usuario', '1')
-    sessionStorage.setItem('tipo_usuario', '1')
-    // Apply the search
-    tableComprador.columns().every( function () {
-        var that = this;
-    
-        $( 'input', this.footer() ).on( 'keyup change clear', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } );
-});
-function getProdutos(){
-    var vendedor = 1;
-    var url= 'http://localhost:8080/produto/vendedor/?' + vendedor.toString()
-    $.ajax({
-        method: "GET",
-        crossDomain: true,
-        url : url,
-        dataType : "json",
-        contentType: "application/json; charset=utf-8",
-        processData : false,
-        success : function (res){
-            $("#modalNovoProduto").modal('hide')
-            flash('Ação executada com sucesso 😀', 'success');
+        searching : true,
+        "processing" : true,
+        "ajax" : {
+            "url" : "http://localhost:8080/produto/",
+            "type" : "GET",
+            dataSrc: ''
         },
-        error : function(res){
-            console.log(res);
-            flash('Algo de errado aconteceu 😥', 'error');
-        }
-    })
+        "columns": [
+
+            {"data": "nomeProduto", "className" : ''},
+            {"data": "descricaoProduto", "className" : ''},
+            {"data": "valorProduto", "className" : ''},
+            {"data": "quantidadeProduto", "className" : ''},
+            {"data": "id_produto", "className" : ''}
+        ],
+        "columnDefs": [
+            
+            {
+                "targets" : '_all',
+                searchPanes:{show: true}
+            }
+        ],
+        'select' : {"style" : "single"},
+        "language": {
+            "zeroRecords" : "Nenhum dado encontrado",
+            "infoEmpty" : "Nenhum dado encontrado",
+            "infoFiltered" : "(filtrado de um total de _MAX_ dados)",
+            "lengthMenu" : "Mostrar _MENU_ dados por página",
+            "search":         "Pesquisar:",
+            "info":           "Exibindo _START_ a _END_ de _TOTAL_ produtos",
+            "paginate": {
+                "first":      "Primeiro",
+                "last":       "Último",
+                "next":       "Próximo",
+                "previous":   "Anterior"
+            },
+            searchPanes : {
+                clearMessage : 'Remover Filtros'
+            }
+        },
+        stateSave : true,
+        dom: 'Bftrip'
+    });
+    var dt = $('#tabelaVendedor').DataTable();
+//hide the fourth column
+    dt.column(4).visible(false);
+
 }

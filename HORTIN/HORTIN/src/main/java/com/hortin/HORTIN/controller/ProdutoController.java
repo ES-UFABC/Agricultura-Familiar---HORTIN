@@ -50,7 +50,7 @@ public class ProdutoController {
 		      @RequestParam(defaultValue = "id") String sort){
 		Pageable page = PageRequest.of(pageNum, size, Sort.by(sort));
 		Page<Produto> listaProdutos = repo.findAll(page);
-		
+		System.out.println(listaProdutos.getContent());
 		return ResponseEntity.ok(listaProdutos.getContent());
 	}
 	
