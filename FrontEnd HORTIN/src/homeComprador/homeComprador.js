@@ -1,19 +1,18 @@
 $(document).ready(function() {
 
     buildTableComprador();
-
     $('#tabelaComprador').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
         else {
-            table.$('tr.selected').removeClass('selected');
+            tableComprador.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     } );
  
     $('#button').click( function () {
-        table.row('.selected').remove().draw( false );
+        tableComprador.row('.selected').remove().draw( false );
     } );
 
    
@@ -38,6 +37,7 @@ function buildTableComprador(){
             {"data": "descricaoProduto", "className" : ''},
             {"data": "valorProduto", "className" : ''},
             {"data": "quantidadeProduto", "className" : ''},
+            {"data": "vendedor.nome", "className" : ''},
             {"data": "id_produto", "className" : ''}
         ],
         "columnDefs": [
@@ -68,8 +68,28 @@ function buildTableComprador(){
         stateSave : true,
         dom: 'Bftrip'
     });
-    var dt = $('#tabelaVendedor').DataTable();
-//hide the fourth column
-    dt.column(4).visible(false);
+    var dt = $('#tabelaComprador').DataTable();
+//hide the 5th column
+dt.column(5).visible(false);
+
+}
+
+function adicionaNoCarrinho(){
+    const carrinho = JSON.parse(localStorage.getItem('carrinho'))  || []
+    var selectedRow = tableComprador.row('.selected').data();
+
+    if (carrinho.filter(e => e.id === selectedRow.id_produto).length > 0) {
+        console.log("sim")
+    }
+    else{
+        const novoProduto = {
+            "id": selectedRow.id_produto
+        }
+
+        const tarefasAtualizadas = [...carrinho, novoProduto]
+        
+        console.log(tarefasAtualizadas)
+        localStorage.setItem('carrinho', JSON.stringify(tarefasAtualizadas))
+    }
 
 }

@@ -15,3 +15,19 @@
 #botaoCarrinho:hover{
     background-color: #00FFFF;
 }
+
+#divBotao{
+    text-align: right;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 10rem;
+}
+
+#botaoAddCarrinho:hover{
+    background-color: #00FFFF;
+}
+
+#botaoAddCarrinho img {
+    height: 4rem;  
+    width: 4rem;
+}

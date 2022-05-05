@@ -46,11 +46,14 @@ public class ProdutoController {
 	@GetMapping()
 	public ResponseEntity<List<Produto>> pegaTodosProdutos(
 			  @RequestParam(defaultValue = "0") int pageNum,
-		      @RequestParam(defaultValue = "10") int size,
+		      @RequestParam(defaultValue = "999") int size,
 		      @RequestParam(defaultValue = "id") String sort){
 		Pageable page = PageRequest.of(pageNum, size, Sort.by(sort));
 		Page<Produto> listaProdutos = repo.findAll(page);
-		System.out.println(listaProdutos.getContent());
+		
+		for (Produto produto : listaProdutos) {
+			System.out.println(produto.getVendedor().getNome());
+		}
 		return ResponseEntity.ok(listaProdutos.getContent());
 	}
 	

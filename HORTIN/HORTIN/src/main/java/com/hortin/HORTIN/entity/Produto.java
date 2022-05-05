@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.boot.jackson.JsonComponent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,7 +25,6 @@ public class Produto {
 	private Integer QuantidadeProduto;
 	@ManyToOne
 	@NotNull
-	@JsonIgnore
 	private Usuario vendedor;
 
 	public Produto() {
