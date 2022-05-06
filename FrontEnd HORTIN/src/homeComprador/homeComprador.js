@@ -76,14 +76,19 @@ dt.column(5).visible(false);
 
 function adicionaNoCarrinho(){
     const carrinho = JSON.parse(localStorage.getItem('carrinho'))  || []
+    var quantidade = parseInt(document.getElementById("pQuantidade").value);
     var selectedRow = tableComprador.row('.selected').data();
-
+    console.log(carrinho);
     if (carrinho.filter(e => e.id === selectedRow.id_produto).length > 0) {
-        console.log("sim")
+        console.log("sim");
     }
     else{
         const novoProduto = {
-            "id": selectedRow.id_produto
+            "id": selectedRow.id_produto,
+            "vendedor.nome": selectedRow.vendedor.nome,
+            "produto": selectedRow.nomeProduto,
+            "quantidade": quantidade,
+            "preco": selectedRow.valorProduto
         }
 
         const tarefasAtualizadas = [...carrinho, novoProduto]
@@ -92,4 +97,27 @@ function adicionaNoCarrinho(){
         localStorage.setItem('carrinho', JSON.stringify(tarefasAtualizadas))
     }
 
+}
+
+function temSelecao(){
+    if (! tableComprador.rows( '.selected' ).any() ){
+        alert('Selecione uma linha para realizar esta ação.');;
+
+    }
+    else{
+        $('#modalQuantidade').modal('show');
+    }
+
+}
+
+function verCarrinho(){
+    const carrinho = JSON.parse(localStorage.getItem('carrinho'))  || []
+    console.log(carrinho);
+    if (carrinho.length == 0){
+        alert('Carrinho vazio');;
+    }else{
+        $('#modalCarrinho').modal('show');
+
+    }
+    
 }

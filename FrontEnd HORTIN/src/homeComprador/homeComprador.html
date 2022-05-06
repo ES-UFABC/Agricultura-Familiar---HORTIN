@@ -48,14 +48,64 @@
                                 echo $_SESSION['login']; ?>
                     </span>
                     <div class="col align-self-end"> 
-                         <button class="btn btn-info" id="botaoCarrinho"style="color: white" onclick="getProdutos()">Ver Carrinho</button>
+                         <button class="btn btn-info" id="botaoCarrinho"style="color: white" onclick="verCarrinho()">Ver Carrinho</button>
                     </div>
 
                 </div>
             </nav>
         </div>
+        <!-- Modal Quantidade-->
+  <div class="modal fade" id="modalQuantidade" tabindex="-1" aria-labelledby="modalQuantidade" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalQuantidadeLabel">Escolha a Quantidade</h5>
+        </div>
+        <div class="modal-body">
+            <form id="quantidadeProduto">
+                    <label for="pQuantidade">Quantidade:</label>
+                    <input type="number" class="form-control" id="pQuantidade" name="quantidadeProduto" ><br><br>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button  onclick="adicionaNoCarrinho()" type="button" class="btn btn-outline-primary"data-bs-dismiss="modal">Salvar</button>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Carrinho-->
+  <div class="modal fade" id="modalCarrinho" tabindex="-1" aria-labelledby="modalCarrinho" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCarrinhoLabel">Produtos selecionados</h5>
+        </div>
+        <div class="modal-body">
+            <table id="tabelaCarrinho" class="display table table-striped" style="width:97%">
+                <thead>
+                    <tr>
+                        <th>Vendedor</th>
+                        <th>Nome do Produto</th>
+                        <th>Valor unitário (R$)</th>
+                        <th>Quantidade</th>
+                        <th style='display:none;'>id</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button  onclick="adicionaNoCarrinho()" type="button" class="btn btn-outline-primary"data-bs-dismiss="modal">Salvar</button>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </div>
+
+
         <div id="divBotao">
-                <button class="btn btn-info" id="botaoAddCarrinho"style="color: white" onclick="adicionaNoCarrinho()"> <img src="../../assets/img/—Pngtree—add to cart icon_5060869.png"></button>  
+                <button class="btn btn-info" id="botaoAddCarrinho"style="color: white"onclick="temSelecao()"> <img src="../../assets/img/—Pngtree—add to cart icon_5060869.png"></button>  
         </div>
         <div>
             <table id="tabelaComprador" class="display table table-striped" style="width:97%">
