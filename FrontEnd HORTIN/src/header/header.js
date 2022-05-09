@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 function buildTableVendedor(){
     var vendedor = sessionStorage.getItem("id_usuario");
-    console.log(vendedor.toString());
+
     window.table = $("#tabelaVendedor").DataTable({
         paging: true,
         pagingType : "full",

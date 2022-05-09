@@ -105,6 +105,7 @@ function temSelecao(){
 
     }
     else{
+        $('#pQuantidade').val('');
         $('#modalQuantidade').modal('show');
     }
 
@@ -114,10 +115,64 @@ function verCarrinho(){
     const carrinho = JSON.parse(localStorage.getItem('carrinho'))  || []
     console.log(carrinho);
     if (carrinho.length == 0){
-        alert('Carrinho vazio');;
+        alert('Carrinho vazio');
     }else{
+        buildTableCarrinho();
         $('#modalCarrinho').modal('show');
 
     }
     
+}
+
+function buildTableCarrinho(){
+
+    var my_data = {"status":"success","data":[{"nome":"EL SIDO","produto":"BANANA","preco":"50.00", "quantidade":"77", "id":"11"}]};
+
+    window.tableCarrinho = $("#tabelaCarrinho").DataTable({
+        paging: true,
+        pagingType : "full",
+        colReorder: true,
+        searching : true,
+        "processing" : true,
+        data: my_data.data,
+        "columns": [
+
+            {"data": "nome", "className" : ''},
+            {"data": "produto", "className" : ''},
+            {"data": "preco", "className" : ''},
+            {"data": "quantidade", "className" : ''},
+            {"data": "id", "className" : ''}
+        ],
+        "columnDefs": [
+            
+            {
+                "targets" : '_all',
+                searchPanes:{show: true}
+            }
+        ],
+        'select' : {"style" : "single"},
+        "language": {
+            "zeroRecords" : "Nenhum dado encontrado",
+            "infoEmpty" : "Nenhum dado encontrado",
+            "infoFiltered" : "(filtrado de um total de _MAX_ dados)",
+            "lengthMenu" : "Mostrar _MENU_ dados por página",
+            "search":         "Pesquisar:",
+            "info":           "Exibindo _START_ a _END_ de _TOTAL_ produtos",
+            "paginate": {
+                "first":      "Primeiro",
+                "last":       "Último",
+                "next":       "Próximo",
+                "previous":   "Anterior"
+            },
+            searchPanes : {
+                clearMessage : 'Remover Filtros'
+            }
+        },
+        stateSave : true,
+        dom: 'Bftrip'
+    });
+    var dt = $('#tabelaCarrinho').DataTable();
+//hide the 5th column
+    dt.column(4).visible(false);
+
 }
