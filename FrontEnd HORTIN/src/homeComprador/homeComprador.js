@@ -85,7 +85,7 @@ function adicionaNoCarrinho(){
     else{
         const novoProduto = {
             "id": selectedRow.id_produto,
-            "vendedor.nome": selectedRow.vendedor.nome,
+            "vendedor": selectedRow.vendedor.nome,
             "produto": selectedRow.nomeProduto,
             "quantidade": quantidade,
             "preco": selectedRow.valorProduto
@@ -126,7 +126,13 @@ function verCarrinho(){
 
 function buildTableCarrinho(){
 
-    var my_data = {"status":"success","data":[{"nome":"EL SIDO","produto":"BANANA","preco":"50.00", "quantidade":"77", "id":"11"}]};
+    const carrinho = (localStorage.getItem('carrinho'))  || []
+    var teste = {
+        data : carrinho
+    }
+    var teste2  = JSON.stringify(teste)
+    console.log('aqui')
+    console.log(teste2)
 
     window.tableCarrinho = $("#tabelaCarrinho").DataTable({
         paging: true,
@@ -134,10 +140,8 @@ function buildTableCarrinho(){
         colReorder: true,
         searching : true,
         "processing" : true,
-        data: my_data.data,
         "columns": [
 
-            {"data": "nome", "className" : ''},
             {"data": "produto", "className" : ''},
             {"data": "preco", "className" : ''},
             {"data": "quantidade", "className" : ''},
@@ -171,8 +175,10 @@ function buildTableCarrinho(){
         stateSave : true,
         dom: 'Bftrip'
     });
+    
     var dt = $('#tabelaCarrinho').DataTable();
 //hide the 5th column
     dt.column(4).visible(false);
+    dt.rows.add(carrinho)
 
 }
