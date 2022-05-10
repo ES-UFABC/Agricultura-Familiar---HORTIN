@@ -125,6 +125,7 @@ public class ProdutoController {
 	@PutMapping("/Compra")
 	@Transactional
 	public ResponseEntity<List<CompraProduto>> compraProdutos(@RequestBody List<CompraProduto> listaCompra){
+		System.out.println("compra");
 		for(CompraProduto compra : listaCompra) {
 			Optional<Produto> produtoAchado = repo.findById(compra.getId());
 			if(produtoAchado.isEmpty()) {
