@@ -50,6 +50,8 @@ public class UsuariosController {
 		}
 		System.out.println("Autorizado");
 		Optional<Usuario> usuarioAchado = usuarioRepo.getByUser(user);
+                System.out.println(usuarioAchado);
+                System.out.println(usuarioAchado.get());
 		return ResponseEntity.status(HttpStatus.OK).body(usuarioAchado.get());
 	}
 }

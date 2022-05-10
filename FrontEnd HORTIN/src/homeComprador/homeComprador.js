@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    document.getElementById("usuarioAtual").innerHTML = sessionStorage.getItem("nome_usuario");
     buildTableComprador();
     $('#tabelaComprador').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {

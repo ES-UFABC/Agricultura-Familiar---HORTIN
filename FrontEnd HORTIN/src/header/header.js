@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    document.getElementById("usuarioAtual").innerHTML = sessionStorage.getItem("nome_usuario");
     buildTableVendedor();
 
     $('#tabelaVendedor').on( 'click', 'tr', function () {
@@ -21,6 +21,7 @@ $(document).ready(function() {
 
 function buildTableVendedor(){
     var vendedor = sessionStorage.getItem("id_usuario");
+
 
     window.table = $("#tabelaVendedor").DataTable({
         paging: true,

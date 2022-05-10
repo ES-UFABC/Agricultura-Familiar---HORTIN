@@ -94,6 +94,7 @@ public class ProdutoController {
 		produtoAchado.get().setDescricaoProduto(produto.getDescricaoProduto());
 		produtoAchado.get().setNomeProduto(produto.getNomeProduto());
 		produtoAchado.get().setValorProduto(produto.getValorProduto());
+                produtoAchado.get().setQuantidadeProduto(produto.getQuantidadeProduto());
 		
 		return ResponseEntity.ok(produtoAchado.get());
 	}

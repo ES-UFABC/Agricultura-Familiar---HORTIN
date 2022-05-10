@@ -39,14 +39,9 @@
                         </li>
                     </ul>
                     <span class="navbar-text">
-                        Usuário atual: <?php
-                            if(!isset($_SESSION['login'])) {
-                                session_start();
-                                echo  $_SESSION['login'];
-                                }
-                            else
-                                echo $_SESSION['login']; ?>
+                        Usuário atual: &nbsp;  
                     </span>
+                    <div id="usuarioAtual">  </div>
                     <div class="col align-self-end"> 
                          <button class="btn btn-info" id="botaoCarrinho"style="color: white" onclick="verCarrinho()">Ver Carrinho</button>
                     </div>

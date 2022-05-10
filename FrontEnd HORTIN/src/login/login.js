@@ -8,8 +8,10 @@ function login(){
         method: "GET",
         url : url,
         success : function (data, textStatus, jqXHR){
+            console.log(jqXHR.responseJSON)
             sessionStorage.setItem('id_usuario', jqXHR.responseJSON.id)
             sessionStorage.setItem('tipo_usuario', jqXHR.responseJSON.tipoAcesso)
+            sessionStorage.setItem('nome_usuario', jqXHR.responseJSON.nome)
             if(jqXHR.responseJSON.tipoAcesso == 2){
                 window.location.replace("../homeComprador/homeComprador.html");
             }else {

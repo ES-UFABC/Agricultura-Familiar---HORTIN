@@ -38,14 +38,9 @@
 					</li>
 				</ul>
 				<span class="navbar-text">
-					Usuário atual: <?php
-						if(!isset($_SESSION['login'])) {
-							session_start();
-							echo  $_SESSION['login'];
-							}
-						else
-							echo $_SESSION['login']; ?>
+					Usuário atual: &nbsp;  
 				</span>
+				<div id="usuarioAtual">  </div>
 			</div>
 		</nav>
 	</div>
