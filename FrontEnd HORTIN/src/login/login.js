@@ -10,7 +10,11 @@ function login(){
         success : function (data, textStatus, jqXHR){
             sessionStorage.setItem('id_usuario', jqXHR.responseJSON.id)
             sessionStorage.setItem('tipo_usuario', jqXHR.responseJSON.tipoAcesso)
-            window.location.replace("../header/header.html");
+            if(jqXHR.responseJSON.tipoAcesso == 2){
+                window.location.replace("../homeComprador/homeComprador.html");
+            }else {
+                window.location.replace("../header/header.html");
+            }
         },
         error : function(){
             alert('Algo de errado aconteceu 😥');
