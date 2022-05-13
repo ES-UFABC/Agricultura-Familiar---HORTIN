@@ -11,9 +11,10 @@ Ao cliente, haverá a listagem dos produtos disponíveis para a compra e a quant
  BACKEND:
   JAVA (Framework SpringBoot)
  Banco de Dados:
-  MySql
+  H2
 
 # Como Baixar
+Clonar o projeto do github.
 
 # Como utilizar
 Inicializar a aplicação spring boot e o front. Criar novo usuário ou fazer login. Como vendedor será apresentado na tela seus produtos existentes, é possível criar novo produto, caso o objetivo seja editar, selecione o produto desejado e clique em editar, insira as informações atualizadas e salve.
